@@ -18,6 +18,46 @@ function withoutEmpty(errors) {
   return Object.fromEntries(Object.entries(errors).filter(([, message]) => message))
 }
 
+function isValidHttpUrl(value) {
+  try {
+    const url = new URL(value)
+    return url.protocol === 'http:' || url.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+function validateLength(value, label, min, max) {
+  const length = value.trim().length
+
+  if (length === 0) {
+    return `${label} is required.`
+  }
+
+  if (length < min) {
+    return `${label} must be at least ${min} characters.`
+  }
+
+  if (length > max) {
+    return `${label} must be at most ${max} characters.`
+  }
+
+  return ''
+}
+
+export function validateReview({ title, author, genre, rating, coverUrl, content }) {
+  const ratingNumber = Number(rating)
+
+  return withoutEmpty({
+    title: validateLength(title, 'Title', 1, 150),
+    author: validateLength(author, 'Author', 1, 100),
+    genre: genre ? '' : 'Choose a genre.',
+    rating: Number.isInteger(ratingNumber) && ratingNumber >= 1 && ratingNumber <= 5 ? '' : 'Choose a rating from 1 to 5.',
+    coverUrl: !coverUrl.trim() || isValidHttpUrl(coverUrl.trim()) ? '' : 'Enter a full image link starting with http:// or https://',
+    content: validateLength(content, 'Review', 10, 3000),
+  })
+}
+
 export function validateLogin({ email, password }) {
   return withoutEmpty({
     email: validateEmail(email),

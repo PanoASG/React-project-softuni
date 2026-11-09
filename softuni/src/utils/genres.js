@@ -1,0 +1,17 @@
+export const GENRES = [
+  'Fiction',
+  'Fantasy',
+  'Science fiction',
+  'Mystery',
+  'Thriller',
+  'Romance',
+  'Horror',
+  'Historical fiction',
+  'Classics',
+  'Young adult',
+  'Poetry',
+  'Biography',
+  'Non-fiction',
+  'Self-help',
+  'Other',
+]

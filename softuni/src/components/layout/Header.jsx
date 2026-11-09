@@ -17,9 +17,10 @@ function Header() {
   const navigate = useNavigate()
 
   const logoutHandler = async () => {
+    navigate('/')
+
     try {
       await logout()
-      navigate('/')
     } catch (error) {
       alert(error.message)
     }

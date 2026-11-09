@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
 import FormField from '../components/common/FormField.jsx'
 import { useForm } from '../hooks/useForm.js'
 import { register } from '../services/authService.js'
@@ -7,15 +7,10 @@ import { validateRegister } from '../utils/validation.js'
 const initialValues = { email: '', username: '', password: '', rePassword: '' }
 
 function RegisterPage() {
-  const navigate = useNavigate()
-
   const { values, errors, submitError, isSubmitting, changeHandler, submitHandler } = useForm(
     initialValues,
     validateRegister,
-    async (formValues) => {
-      await register(formValues)
-      navigate('/')
-    },
+    register,
   )
 
   return (

@@ -1,0 +1,40 @@
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.details__cover {
+  width: 12rem;
+  height: 18rem;
+  font-size: 4rem;
+}
+
+.details__info {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.details__title {
+  margin: 0 0 0.25rem;
+  overflow-wrap: anywhere;
+}
+
+.details__author {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: var(--color-muted);
+}
+
+.details__meta {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.details__content {
+  margin: 0 0 1.5rem;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}

@@ -1,4 +1,6 @@
 import { Route, Routes } from 'react-router'
+import AuthGuard from './components/guards/AuthGuard.jsx'
+import GuestGuard from './components/guards/GuestGuard.jsx'
 import Layout from './components/layout/Layout.jsx'
 import BookDetailsPage from './pages/BookDetailsPage.jsx'
 import CatalogPage from './pages/CatalogPage.jsx'
@@ -16,12 +18,19 @@ function App() {
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="books" element={<CatalogPage />} />
-        <Route path="books/new" element={<CreateBookPage />} />
         <Route path="books/:bookId" element={<BookDetailsPage />} />
-        <Route path="books/:bookId/edit" element={<EditBookPage />} />
-        <Route path="my-reviews" element={<MyReviewsPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
+
+        <Route element={<AuthGuard />}>
+          <Route path="books/new" element={<CreateBookPage />} />
+          <Route path="books/:bookId/edit" element={<EditBookPage />} />
+          <Route path="my-reviews" element={<MyReviewsPage />} />
+        </Route>
+
+        <Route element={<GuestGuard />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+        </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
