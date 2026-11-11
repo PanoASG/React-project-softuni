@@ -3,7 +3,10 @@ import { Link, useParams } from 'react-router'
 import ErrorMessage from '../components/common/ErrorMessage.jsx'
 import LoadingSpinner from '../components/common/LoadingSpinner.jsx'
 import BookCover from '../components/reviews/BookCover.jsx'
+import OwnerActions from '../components/reviews/OwnerActions.jsx'
+import ReviewNotFound from '../components/reviews/ReviewNotFound.jsx'
 import StarRating from '../components/reviews/StarRating.jsx'
+import { useAuth } from '../hooks/useAuth.js'
 import { useFetch } from '../hooks/useFetch.js'
 import { getReviewById } from '../services/reviewService.js'
 import { formatDate } from '../utils/formatDate.js'
@@ -11,6 +14,7 @@ import './BookDetailsPage.css'
 
 function BookDetailsPage() {
   const { bookId } = useParams()
+  const { user } = useAuth()
   const fetchReview = useCallback(() => getReviewById(bookId), [bookId])
   const { data: review, error, isLoading, retry } = useFetch(fetchReview)
 
@@ -19,14 +23,7 @@ function BookDetailsPage() {
   }
 
   if (error?.notFound) {
-    return (
-      <section>
-        <h1>Review not found</h1>
-        <p className="page__intro">
-          {error.message} <Link to="/books">Back to the catalog</Link>
-        </p>
-      </section>
-    )
+    return <ReviewNotFound message={error.message} />
   }
 
   if (error) {
@@ -44,6 +41,7 @@ function BookDetailsPage() {
           {review.genre} · reviewed by {review.username} on {formatDate(review.createdAt)}
         </p>
         <p className="details__content">{review.content}</p>
+        {user?.id === review.userId && <OwnerActions reviewId={review.id} />}
         <Link to="/books">Back to the catalog</Link>
       </div>
     </article>

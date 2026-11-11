@@ -33,6 +33,30 @@
   color: var(--color-muted);
 }
 
+.owner-actions {
+  margin-bottom: 1.5rem;
+}
+
+.owner-actions--confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--color-error-bg);
+  border-radius: 0.5rem;
+}
+
+.owner-actions__question {
+  margin: 0;
+  font-weight: 600;
+}
+
+.owner-actions__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .details__content {
   margin: 0 0 1.5rem;
   white-space: pre-line;

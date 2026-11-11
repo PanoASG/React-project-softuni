@@ -138,3 +138,11 @@ a.button {
   border: 1px dashed var(--color-border);
   border-radius: 0.5rem;
 }
+
+.button--danger {
+  background: var(--color-error);
+}
+
+.button--danger:hover:not(:disabled) {
+  background: #8f1c13;
+}
