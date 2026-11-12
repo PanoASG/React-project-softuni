@@ -77,3 +77,61 @@
   color: #c98a16;
   letter-spacing: 0.1em;
 }
+
+.review-card__stats {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.likes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.likes--muted {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.likes__count {
+  color: var(--color-muted);
+}
+
+.like-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.like-button:hover:not(:disabled),
+.like-button--active {
+  color: #fff;
+  background: var(--color-accent);
+}
+
+.like-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.link-button {
+  padding: 0;
+  font: inherit;
+  color: var(--color-accent);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import { supabase } from './supabaseClient.js'
 
 const COLUMNS = 'id, created_at, user_id, username, book_title, book_author, genre, rating, cover_url, content'
+const LIST_COLUMNS = `${COLUMNS}, likes(count), comments(count)`
 
 function toReview(row) {
   return {
@@ -14,6 +15,8 @@ function toReview(row) {
     rating: row.rating,
     coverUrl: row.cover_url,
     content: row.content,
+    likeCount: row.likes?.[0]?.count ?? 0,
+    commentCount: row.comments?.[0]?.count ?? 0,
   }
 }
 
@@ -37,7 +40,7 @@ function notFoundError() {
 export async function getAllReviews() {
   const { data, error } = await supabase
     .from('reviews')
-    .select(COLUMNS)
+    .select(LIST_COLUMNS)
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -50,7 +53,7 @@ export async function getAllReviews() {
 export async function getReviewsByUser(userId) {
   const { data, error } = await supabase
     .from('reviews')
-    .select(COLUMNS)
+    .select(LIST_COLUMNS)
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
 

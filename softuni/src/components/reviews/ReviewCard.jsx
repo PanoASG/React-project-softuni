@@ -14,6 +14,10 @@ function ReviewCard({ review }) {
           <p className="review-card__meta">
             {review.genre} · reviewed by {review.username}
           </p>
+          <p className="review-card__stats">
+            <span aria-hidden="true">♥</span> {review.likeCount} {review.likeCount === 1 ? 'like' : 'likes'} ·{' '}
+            {review.commentCount} {review.commentCount === 1 ? 'comment' : 'comments'}
+          </p>
         </div>
       </Link>
     </article>

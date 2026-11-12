@@ -58,6 +58,12 @@ export function validateReview({ title, author, genre, rating, coverUrl, content
   })
 }
 
+export function validateComment({ content }) {
+  return withoutEmpty({
+    content: validateLength(content, 'Comment', 1, 1000),
+  })
+}
+
 export function validateLogin({ email, password }) {
   return withoutEmpty({
     email: validateEmail(email),

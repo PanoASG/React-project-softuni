@@ -5,6 +5,7 @@ function FormField({
   as = 'input',
   options = [],
   placeholder,
+  rows = 8,
   value,
   onChange,
   error,
@@ -23,7 +24,7 @@ function FormField({
 
   let control
   if (as === 'textarea') {
-    control = <textarea {...fieldProps} rows={8} placeholder={placeholder} />
+    control = <textarea {...fieldProps} rows={rows} placeholder={placeholder} />
   } else if (as === 'select') {
     control = (
       <select {...fieldProps}>

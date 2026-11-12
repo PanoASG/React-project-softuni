@@ -1,8 +1,10 @@
 import { useCallback } from 'react'
 import { Link, useParams } from 'react-router'
+import CommentsSection from '../components/comments/CommentsSection.jsx'
 import ErrorMessage from '../components/common/ErrorMessage.jsx'
 import LoadingSpinner from '../components/common/LoadingSpinner.jsx'
 import BookCover from '../components/reviews/BookCover.jsx'
+import LikeButton from '../components/reviews/LikeButton.jsx'
 import OwnerActions from '../components/reviews/OwnerActions.jsx'
 import ReviewNotFound from '../components/reviews/ReviewNotFound.jsx'
 import StarRating from '../components/reviews/StarRating.jsx'
@@ -31,20 +33,24 @@ function BookDetailsPage() {
   }
 
   return (
-    <article className="details">
-      <BookCover url={review.coverUrl} title={review.title} className="details__cover" />
-      <div className="details__info">
-        <h1 className="details__title">{review.title}</h1>
-        <p className="details__author">by {review.author}</p>
-        <StarRating rating={review.rating} />
-        <p className="details__meta">
-          {review.genre} · reviewed by {review.username} on {formatDate(review.createdAt)}
-        </p>
-        <p className="details__content">{review.content}</p>
-        {user?.id === review.userId && <OwnerActions reviewId={review.id} />}
-        <Link to="/books">Back to the catalog</Link>
-      </div>
-    </article>
+    <>
+      <article className="details">
+        <BookCover url={review.coverUrl} title={review.title} className="details__cover" />
+        <div className="details__info">
+          <h1 className="details__title">{review.title}</h1>
+          <p className="details__author">by {review.author}</p>
+          <StarRating rating={review.rating} />
+          <p className="details__meta">
+            {review.genre} · reviewed by {review.username} on {formatDate(review.createdAt)}
+          </p>
+          <p className="details__content">{review.content}</p>
+          <LikeButton reviewId={review.id} reviewOwnerId={review.userId} />
+          {user?.id === review.userId && <OwnerActions reviewId={review.id} />}
+          <Link to="/books">Back to the catalog</Link>
+        </div>
+      </article>
+      <CommentsSection key={review.id} reviewId={review.id} />
+    </>
   )
 }
 

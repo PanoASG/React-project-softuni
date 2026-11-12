@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function useForm(initialValues, validate, onSubmit) {
+export function useForm(initialValues, validate, onSubmit, { resetOnSuccess = false } = {}) {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
   const [submitError, setSubmitError] = useState('')
@@ -28,6 +28,10 @@ export function useForm(initialValues, validate, onSubmit) {
 
     try {
       await onSubmit(values)
+
+      if (resetOnSuccess) {
+        setValues(initialValues)
+      }
     } catch (error) {
       setSubmitError(error.message)
     } finally {
