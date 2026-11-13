@@ -29,11 +29,45 @@
 }
 
 .header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
+  letter-spacing: 0.01em;
   color: var(--color-accent);
   text-decoration: none;
+}
+
+.logo-mark {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+  transform-origin: 50% 0;
+}
+
+.header__brand:hover .logo-mark {
+  animation: bookmark-swing 0.8s ease-in-out;
+}
+
+@keyframes bookmark-swing {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(8deg);
+  }
+
+  50% {
+    transform: rotate(-6deg);
+  }
+
+  75% {
+    transform: rotate(3deg);
+  }
 }
 
 .header__nav {
@@ -46,16 +80,16 @@
   padding-block: 0.25rem;
   color: var(--color-text);
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  background: linear-gradient(currentColor, currentColor) left bottom / 0 2px no-repeat;
+  transition:
+    color 0.2s,
+    background-size 0.25s ease-out;
 }
 
-.header__link:hover {
-  color: var(--color-accent);
-}
-
+.header__link:hover,
 .header__link.active {
   color: var(--color-accent);
-  border-bottom-color: var(--color-accent);
+  background-size: 100% 2px;
 }
 
 .footer {
@@ -81,8 +115,7 @@
 .header__logout {
   padding-inline: 0;
   font: inherit;
-  background: none;
-  border-top: none;
-  border-inline: none;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
 }

@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../../hooks/useAuth.js'
 import { logout } from '../../services/authService.js'
+import LogoMark from './LogoMark.jsx'
 
 const guestLinks = [
   { to: '/login', label: 'Login' },
@@ -32,7 +33,8 @@ function Header() {
     <header className="header">
       <div className="header__inner">
         <Link to="/" className="header__brand">
-          Marginalia
+          <LogoMark />
+          <span className="header__brand-name">Marginalia</span>
         </Link>
         <nav className="header__nav" aria-label="Main navigation">
           <NavLink to="/books" end className="header__link">

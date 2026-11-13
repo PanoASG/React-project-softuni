@@ -62,10 +62,13 @@ function LikeButton({ reviewId, reviewOwnerId }) {
           onClick={toggleHandler}
           disabled={isToggling}
         >
-          <span aria-hidden="true">{isLiked ? '♥' : '♡'}</span> {isLiked ? 'Liked' : 'Like'}
+          <span key={String(isLiked)} className={isLiked ? 'heart-pop' : undefined} aria-hidden="true">
+            {isLiked ? '♥' : '♡'}
+          </span>{' '}
+          {isLiked ? 'Liked' : 'Like'}
         </button>
       )}
-      <span className="likes__count">
+      <span key={count} className="likes__count count-bump">
         {count} {count === 1 ? 'like' : 'likes'}
       </span>
       {!user && (

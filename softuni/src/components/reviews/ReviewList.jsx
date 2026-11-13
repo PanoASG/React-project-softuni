@@ -8,8 +8,8 @@ function ReviewList({ reviews, emptyMessage }) {
 
   return (
     <div className="review-list">
-      {reviews.map((review) => (
-        <ReviewCard key={review.id} review={review} />
+      {reviews.map((review, index) => (
+        <ReviewCard key={review.id} review={review} index={index} />
       ))}
     </div>
   )

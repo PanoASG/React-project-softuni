@@ -1,0 +1,178 @@
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes heart-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.6);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes count-bump {
+  from {
+    opacity: 0.3;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.page-enter {
+  animation: fade-up 0.35s ease-out;
+}
+
+.stagger-in {
+  animation: fade-up 0.4s ease-out backwards;
+  animation-delay: calc(var(--stagger, 0) * 60ms);
+}
+
+.heart-pop {
+  display: inline-block;
+  animation: heart-pop 0.45s ease-out;
+}
+
+.count-bump {
+  display: inline-block;
+  animation: count-bump 0.3s ease-out;
+}
+
+.comment {
+  animation: slide-down 0.3s ease-out;
+}
+
+.form-field__error {
+  animation: slide-down 0.2s ease-out;
+}
+
+.form__error {
+  animation: shake 0.4s ease-in-out;
+}
+
+.error-box,
+.empty-state,
+.loading {
+  animation: fade-in 0.3s ease-out;
+}
+
+.owner-actions--confirm {
+  animation: pop-in 0.2s ease-out;
+}
+
+.button,
+.like-button {
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.1s;
+}
+
+.button:active:not(:disabled),
+.like-button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.cover {
+  transition:
+    transform 0.35s ease-out,
+    box-shadow 0.35s ease-out;
+}
+
+.review-card:hover .review-card__cover {
+  transform: rotate(-3deg) scale(1.04);
+  box-shadow: 0 6px 14px rgb(46 42 37 / 0.25);
+}
+
+.details__cover {
+  transform-origin: left center;
+  box-shadow: 0 4px 12px rgb(46 42 37 / 0.15);
+}
+
+.details__cover:hover {
+  transform: perspective(800px) rotateY(-14deg);
+  box-shadow: 12px 10px 24px rgb(46 42 37 / 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

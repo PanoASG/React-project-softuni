@@ -50,6 +50,20 @@ export async function getAllReviews() {
   return data.map(toReview)
 }
 
+export async function getLatestReviews(limit = 3) {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select(LIST_COLUMNS)
+    .order('created_at', { ascending: false })
+    .limit(limit)
+
+  if (error) {
+    throw new Error('Could not load the latest reviews. Please try again.')
+  }
+
+  return data.map(toReview)
+}
+
 export async function getReviewsByUser(userId) {
   const { data, error } = await supabase
     .from('reviews')

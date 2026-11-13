@@ -2,9 +2,11 @@ import { Link } from 'react-router'
 import BookCover from './BookCover.jsx'
 import StarRating from './StarRating.jsx'
 
-function ReviewCard({ review }) {
+const MAX_STAGGER = 10
+
+function ReviewCard({ review, index = 0 }) {
   return (
-    <article className="review-card">
+    <article className="review-card stagger-in" style={{ '--stagger': Math.min(index, MAX_STAGGER) }}>
       <Link to={`/books/${review.id}`} className="review-card__link">
         <BookCover url={review.coverUrl} title={review.title} className="review-card__cover" />
         <div className="review-card__body">
