@@ -84,7 +84,7 @@
 
 ### Nested & Parameterized Routes
 
-- **Nested routing** — Yes. `Layout` is a layout route that renders the header, the footer and an `<Outlet />`. `AuthGuard` and `GuestGuard` are pathless layout routes nested inside it, with the protected pages nested inside them.
+- **Nested routing?** — Yes. `Layout` is a layout route that renders the header, the footer and an `<Outlet />`. `AuthGuard` and `GuestGuard` are pathless layout routes nested inside it, with the protected pages nested inside them.
 - **Routes with URL parameters** — `/books/:bookId` and `/books/:bookId/edit`.
 
 ## 5. List → Details Flow
@@ -288,7 +288,7 @@ src/
 
 - Node.js installed (version 20.19+ or 22.12+)
 
-That's it. The Supabase backend is already configured and connected, so no setup is required. The Supabase URL and publishable key in `.env` are public by design, and the data is protected by Row Level Security.
+That's it. The Supabase backend is already configured and connected, so no setup is required. 
 
 ### Steps
 
@@ -314,5 +314,3 @@ npm run dev
 Open <http://localhost:5173> in your browser.
 
 To test the full flow: click **Register** in the navbar, create an account, then add a review. To try likes and comments as another user, register a second account.
-
-Other commands: `npm run build` (production build), `npm run preview` (serve the build) and `npm run lint` (ESLint).
